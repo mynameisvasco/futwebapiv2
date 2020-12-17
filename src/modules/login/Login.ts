@@ -18,7 +18,7 @@ export class Login {
   /**
    * Opens login form from web app initial page
    */
-  async open() {
+  open() {
     this.loginView._btnLogin._tapDetected();
   }
 
@@ -26,7 +26,8 @@ export class Login {
    * Performs login using provided options
    * @param options account login details
    */
-  async login(options: LoginOptions) {
+  login(options: LoginOptions) {
+    console.log(options);
     (document.getElementById("email") as HTMLInputElement).value =
       options.email;
     (document.getElementById("password") as HTMLInputElement).value =
@@ -38,7 +39,7 @@ export class Login {
    * Selects security method to use
    * @param option email or app 2fa method.
    */
-  async selectSecurity(option: "APP" | "EMAIL") {
+  selectSecurity(option: "APP" | "EMAIL") {
     const inputs = Array.from(document.getElementsByTagName("input"));
     const security = inputs.find((o: HTMLInputElement) => {
       return o.value === option;
@@ -53,7 +54,7 @@ export class Login {
    * Performs security validation using specified options
    * @param options token2fa or code2fa
    */
-  async security(options: SecurityOptions) {
+  security(options: SecurityOptions) {
     if (options.code2fa) {
       (document.getElementById("oneTimeCode") as HTMLInputElement).value =
         options.code2fa;

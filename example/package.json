@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "scripts": {
     "build-injector": "browserify src/injector.ts -p [ tsify -p tsconfig.json ] > build/injector.js",
-    "start": "tsc && node build/example/src/main.js"
+    "start": "npm run build-injector && tsc && node build/example/src/main.js",
+    "clean": "rm -rf build"
   },
   "author": "Vasco Sousa",
   "license": "MIT",

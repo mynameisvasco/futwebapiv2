@@ -6,7 +6,8 @@
   "main": "build/index.js",
   "scripts": {
     "build": "tsc",
-    "doc": "typedoc --out docs src/"
+    "doc": "typedoc --out docs src/",
+    "clean": "rm -rf build"
   },
   "author": "Vasco Sousa",
   "license": "MIT",
