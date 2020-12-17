@@ -4,7 +4,7 @@ export class Items {
   private _itemService: any;
 
   constructor() {
-    this._itemService = (window as any).services.Item;
+    this._itemService = (window as any).services?.Item;
   }
 
   /**

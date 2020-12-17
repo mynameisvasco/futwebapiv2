@@ -8,10 +8,8 @@ export class App {
   private _login: Login;
 
   constructor() {
-    if (!window.location.hostname.includes("signin.ea.com")) {
-      this._market = new Market();
-      this._items = new Items();
-    }
+    this._market = new Market();
+    this._items = new Items();
     this._login = new Login();
   }
 
@@ -38,9 +36,6 @@ export class App {
    * @returns market instance
    */
   get market(): Market {
-    if (!this._market) {
-      throw new Error("You cannot access market module from active page.");
-    }
     return this._market;
   }
 
@@ -49,9 +44,6 @@ export class App {
    * @returns items instance
    */
   get items(): Items {
-    if (!this._items) {
-      throw new Error("You cannot access items module from active page.");
-    }
     return this._items;
   }
 

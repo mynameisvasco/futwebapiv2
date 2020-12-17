@@ -8,7 +8,7 @@ export class Market {
   private gConfigurationModel: any;
 
   constructor() {
-    this.itemService = (window as any).services.Item;
+    this.itemService = (window as any).services?.Item;
     this.gConfigurationModel = (window as any).gConfigurationModel;
   }
 
