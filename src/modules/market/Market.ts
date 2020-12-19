@@ -107,9 +107,9 @@ export class Market {
     return new Promise((resolve, reject) => {
       window.services.Item.itemDao
         .listItem(
-          options.itemData,
+          options.entityId,
           options.startingBid,
-          options.buyNow,
+          options.buyNowPrice,
           options.duration
         )
         .observe(undefined, (_: any, obs: any) => {
@@ -183,7 +183,7 @@ export class Market {
    */
   async refreshAuction(entities: IUTItemEntity[]) {
     return new Promise((resolve, reject) => {
-      window.services.Item.refreshAuctions(entities).observe(
+      window.services.Item.refreshAuctions(entities, false).observe(
         undefined,
         (_: any, obs: any) => {
           if (obs.success) resolve(undefined);
