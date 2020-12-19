@@ -1,6 +1,6 @@
 {
-  "name": "@mynameisvasco/futwebapiv2",
-  "version": "2.0.3",
+  "name": "futwebapiv2",
+  "version": "2.0.0",
   "description": "An api to interact with fut web app with little effort",
   "types": "build/index.d.ts",
   "main": "build/index.js",
@@ -14,9 +14,6 @@
   "files": [
     "build"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "dependencies": {
     "otplib": "^12.0.1"
   },
@@ -27,5 +24,13 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mynameisvasco/FutWebApiV2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mynameisvasco/FutWebApiV2/issues"
+  },
+  "homepage": "https://github.com/mynameisvasco/FutWebApiV2#readme",
+  "directories": {
+    "doc": "docs",
+    "example": "example"
   }
 }
