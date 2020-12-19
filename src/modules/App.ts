@@ -1,16 +1,19 @@
 import { Items } from "./items/Items";
 import { Login } from "./login/Login";
 import { Market } from "./market/Market";
+import { User } from "./user/User";
 
 export class App {
-  private _market?: Market;
-  private _items?: Items;
+  private _market: Market;
+  private _items: Items;
   private _login: Login;
+  private _user: User;
 
   constructor() {
     this._market = new Market();
     this._items = new Items();
     this._login = new Login();
+    this._user = new User();
   }
 
   /**
@@ -24,11 +27,25 @@ export class App {
   }
 
   /**
-   * Disables web app ability to track browser tab.
+   * Disables web app ability to track user's actions.
    */
   disableMonitoring(): void {
-    (window as any).EASFCApp.prototype.onPause = (): any => undefined;
-    (window as any).EASFCApp.prototype.onResume = (): any => undefined;
+    window.EASFCApp.prototype.onPause = (): any => {};
+    window.EASFCApp.prototype.onResume = (): any => {};
+    window.services.PIN.isEnabled = () => false;
+    window.services.PIN.isEnabledByUser = () => false;
+    window.services.PIN.isEnabledByConfig = () => false;
+    window.services.PIN.enabled = false;
+  }
+
+  /**
+   * Sleep during specified time.
+   * @param ms time to sleep in milliseconds
+   */
+  async sleep(ms: number) {
+    await new Promise((resolve) => {
+      setTimeout(() => resolve(undefined), ms);
+    });
   }
 
   /**
@@ -53,5 +70,13 @@ export class App {
    */
   get login(): Login {
     return this._login;
+  }
+
+  /**
+   * Gets the user module
+   * @returns user instance
+   */
+  get user(): User {
+    return this._user;
   }
 }

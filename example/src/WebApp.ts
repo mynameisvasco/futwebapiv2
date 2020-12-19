@@ -1,14 +1,13 @@
-import { Browser, EvaluateFn, Page, SerializableOrJSHandle } from "puppeteer";
-import Puppeteer, { PuppeteerExtra } from "puppeteer-extra";
-import StealthPlugin from "puppeteer-extra-plugin-stealth";
-import * as Fs from "fs";
+import { Browser, EvaluateFn, Page, SerializableOrJSHandle } from 'puppeteer';
+import Puppeteer, { PuppeteerExtra } from 'puppeteer-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 
 export class WebApp {
   private _puppeteer: PuppeteerExtra;
   private _browser: Browser;
   private _page: Page;
-  private _url = "https://www.ea.com/en-gb/fifa/ultimate-team/web-app/";
-  private _injectorUrl = "https://a.origin.com/injector.js";
+  private _url = 'https://www.ea.com/en-gb/fifa/ultimate-team/web-app/';
+  private _injectorUrl = 'https://a.origin.com/injector.js';
 
   constructor() {
     this._puppeteer = new PuppeteerExtra(Puppeteer);
@@ -30,35 +29,30 @@ export class WebApp {
   }
 
   async waitForNavigation() {
-    return await this._page.waitForNavigation({ waitUntil: "networkidle0" });
+    return await this._page.waitForNavigation({ waitUntil: 'networkidle0' });
+  }
+
+  async waitForLoad() {
+    const xLoginBtn = "(//button[contains(@class, 'call-to-action')])[1]";
+    await this._page.waitForXPath(xLoginBtn, { visible: true });
+  }
+
+  async waitForLoginFinish() {
+    const xLicenseLogo = "(//img[contains(@class, 'licenseLogo')])[1]";
+    const xFutWebLoader = "(//img[contains(@class, 'loaderIcon')])[1]";
+    await this._page.waitForXPath(xLicenseLogo, { hidden: true });
+    await this._page.waitForXPath(xFutWebLoader, { visible: true });
+    await this._page.waitForXPath(xFutWebLoader, { hidden: true });
   }
 
   async inject() {
-    this._page.on("load", () => {
-      this._inject();
+    this._page.on('load', async () => {
+      await this._page.addScriptTag({
+        url: this._injectorUrl,
+      });
     });
-    return new Promise((resolve) => {
-      const i = setInterval(async () => {
-        const isLoginReady = (await this._page.evaluate(
-          () => document.getElementsByClassName("call-to-action").length !== 0
-        )) as boolean;
-        if (isLoginReady) {
-          resolve(undefined);
-          this._inject();
-          clearInterval(i);
-        }
-      }, 500);
-    });
-  }
-
-  private async _inject() {
-    await this._page.evaluate((injectorUrl) => {
-      var script = document.createElement("script");
-      script.src = injectorUrl;
-      document.getElementsByTagName("head")[0].appendChild(script);
-    }, this._injectorUrl);
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(undefined), 1000);
+    await this._page.addScriptTag({
+      url: this._injectorUrl,
     });
   }
 }

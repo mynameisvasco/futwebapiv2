@@ -29,6 +29,9 @@ express.get("/injector.js", (req: Request, res: Response) => {
 
 express.post("/login", async (req: Request, res: Response) => {
   const { email, password, token2fa } = req.body;
+  await webApp.init();
+  await webApp.waitForLoad();
+  await webApp.inject();
   await webApp.exec(() => window.api.login.open());
   await webApp.waitForNavigation();
   await webApp.exec(
@@ -49,8 +52,6 @@ const server = Https.createServer(options, express);
 
 async function bootstrap() {
   server.listen(443, () => console.log("Server running on 443"));
-  await webApp.init();
-  await webApp.inject();
 }
 
 bootstrap();

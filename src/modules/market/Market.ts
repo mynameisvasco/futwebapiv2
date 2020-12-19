@@ -4,19 +4,11 @@ import { MarketListOptions } from "./options/MarketListOptions";
 import { MarketSearchOptions } from "./options/MarketSearchOptions";
 
 export class Market {
-  private itemService: any;
-  private gConfigurationModel: any;
-
-  constructor() {
-    this.itemService = (window as any).services?.Item;
-    this.gConfigurationModel = (window as any).gConfigurationModel;
-  }
-
   /**
    * Disables market cache
    */
   disableCache(): void {
-    this.itemService.marketRepository.isCacheExpired = () => true;
+    window.services.Item.marketRepository.isCacheExpired = () => true;
   }
 
   /**
@@ -24,7 +16,7 @@ export class Market {
    * @param v the number of items per page
    */
   setItemsPerPage(v: number): void {
-    this.gConfigurationModel._dataObject.itemsPerPage.transferMarket = v;
+    window.gConfigurationModel._dataObject.itemsPerPage.transferMarket = v;
   }
 
   /**
@@ -36,12 +28,13 @@ export class Market {
     options: MarketSearchOptions
   ): Promise<IUTItemEntity[]> {
     return new Promise((resolve, reject) => {
-      this.itemService
-        .searchTransferMarket(options, 1)
-        .observe(undefined, (_: any, obs: any) => {
+      window.services.Item.searchTransferMarket(options, 1).observe(
+        undefined,
+        (_: any, obs: any) => {
           if (obs.success) resolve(obs.data.items);
           else reject();
-        });
+        }
+      );
     });
   }
 
@@ -51,7 +44,7 @@ export class Market {
    */
   async getTransferPile(): Promise<IUTItemEntity[]> {
     return new Promise((resolve, reject) => {
-      this.itemService.itemDao
+      window.services.Item.itemDao
         .getTransferPile()
         .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.response.items);
@@ -66,7 +59,7 @@ export class Market {
    */
   async getWatchPile(): Promise<IUTItemEntity[]> {
     return new Promise((resolve, reject) => {
-      this.itemService.itemDao
+      window.services.Item.itemDao
         .getWatchPile()
         .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.response.items);
@@ -81,7 +74,7 @@ export class Market {
    */
   async getUnassignedPile(): Promise<IUTItemEntity[]> {
     return new Promise((resolve, reject) => {
-      this.itemService.itemDao
+      window.services.Item.itemDao
         .getUnassignedPile()
         .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.response.items);
@@ -96,7 +89,7 @@ export class Market {
    */
   async relistExpiredAuctions(): Promise<number[]> {
     return new Promise((resolve, reject) => {
-      this.itemService.itemDao
+      window.services.Item.itemDao
         .relistExpiredAuctions()
         .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.data?.auctionIds);
@@ -112,7 +105,7 @@ export class Market {
    */
   async list(options: MarketListOptions): Promise<number[]> {
     return new Promise((resolve, reject) => {
-      this.itemService.itemDao
+      window.services.Item.itemDao
         .listItem(
           options.entityId,
           options.startingBid,
@@ -134,12 +127,13 @@ export class Market {
    */
   async bid(entity: IUTItemEntity, coins: number): Promise<number[]> {
     return new Promise((resolve, reject) => {
-      this.itemService
-        .bid(entity, coins)
-        .observe(undefined, (_: any, obs: any) => {
+      window.services.Item.bid(entity, coins).observe(
+        undefined,
+        (_: any, obs: any) => {
           if (obs.success) resolve(obs.data?.itemIds);
           else reject();
-        });
+        }
+      );
     });
   }
 
@@ -149,12 +143,13 @@ export class Market {
    */
   async clearSold(): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.itemService
-        .clearSoldItems()
-        .observe(undefined, (_: any, obs: any) => {
+      window.services.Item.clearSoldItems().observe(
+        undefined,
+        (_: any, obs: any) => {
           if (obs.success) resolve(obs.data?.itemIds);
           else reject();
-        });
+        }
+      );
     });
   }
 
@@ -164,7 +159,7 @@ export class Market {
    */
   async getPriceRanges(resourceIds: number[]): Promise<IPriceRanges[]> {
     return new Promise((resolve, reject) => {
-      this.itemService.itemDao
+      window.services.Item.itemDao
         .getItemMarketDataByDefId(resourceIds)
         .observe(undefined, (_: any, obs: any) => {
           if (obs.success)
@@ -179,6 +174,22 @@ export class Market {
             );
           else reject();
         });
+    });
+  }
+
+  /**
+   * Refreshes auction info of specefied entities.
+   * @param entities used to retrive auction info
+   */
+  async refreshAuction(entities: IUTItemEntity[]) {
+    return new Promise((resolve, reject) => {
+      window.services.Item.refreshAuctions(entities).observe(
+        undefined,
+        (_: any, obs: any) => {
+          if (obs.success) resolve(undefined);
+          else reject();
+        }
+      );
     });
   }
 }
