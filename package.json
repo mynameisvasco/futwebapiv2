@@ -1,6 +1,6 @@
 {
   "name": "futwebapiv2",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "An api to interact with fut web app with little effort",
   "types": "build/index.d.ts",
   "main": "build/index.js",
