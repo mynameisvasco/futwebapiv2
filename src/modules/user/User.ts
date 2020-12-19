@@ -1,11 +1,17 @@
 import { IUTUserEntity } from "../../interfaces/IUTUserEntity";
 
 export class User {
+  /**
+   * Gets user's entity details
+   */
   getUser() {
     return window.services.User.getUser() as IUTUserEntity;
   }
 
-  async getCoins() {
+  /**
+   * Gets user's coins amount.
+   */
+  async getCoins(): Promise<number> {
     return new Promise((resolve, reject) => {
       window.services.User.requestCurrencies().observe(
         undefined,
@@ -17,7 +23,10 @@ export class User {
     });
   }
 
-  async getPoints() {
+  /**
+   * Gets user's fifa points amount
+   */
+  async getPoints(): Promise<number> {
     return new Promise((resolve, reject) => {
       window.services.User.requestCurrencies().observe(
         undefined,
@@ -29,7 +38,10 @@ export class User {
     });
   }
 
-  async getDraftTokens() {
+  /**
+   * Gets user's draf tokens amount
+   */
+  async getDraftTokens(): Promise<number> {
     return new Promise((resolve, reject) => {
       window.services.User.requestCurrencies().observe(
         undefined,
