@@ -105,17 +105,15 @@ export class Market {
    */
   async list(options: MarketListOptions): Promise<number[]> {
     return new Promise((resolve, reject) => {
-      window.services.Item.itemDao
-        .listItem(
-          options.entityId,
-          options.startingBid,
-          options.buyNowPrice,
-          options.duration
-        )
-        .observe(undefined, (_: any, obs: any) => {
-          if (obs.success) resolve(obs.data?.auctionIds);
-          else reject();
-        });
+      window.services.Item.list(
+        options.entity,
+        options.startingBid,
+        options.buyNowPrice,
+        options.duration
+      ).observe(undefined, (_: any, obs: any) => {
+        if (obs.success) resolve(obs.data?.auctionIds);
+        else reject();
+      });
     });
   }
 
