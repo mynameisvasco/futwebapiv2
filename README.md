@@ -13,11 +13,9 @@ The old version of this api was based on web automation using selenium, that app
 **Important note**: You need a browser bundler to run this on browser, you can try <a href="http://browserify.org/">Browserify</a>.
 
 1. Create a file in project's root directory called .npmrc
-2. Add `registry=https://npm.pkg.github.com/mynameisvasco` to .npmrc
-3. Run `npm install @mynameisvasco/futwebapiv2`
-4. Code your own stuff and have fun!
-5. Inject your code in the webapp.
-6. If you have problems installing the package, read the documentation that explains how to install a github npm packge [here](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages#authenticating-with-a-personal-access-token)
+2. Run `npm install futwebapiv2`
+3. Code your own stuff and have fun!
+4. Inject your code in the webapp.
 
 
 
