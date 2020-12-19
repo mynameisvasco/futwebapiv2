@@ -1,7 +1,7 @@
 import { IUTItemEntity } from "../../../interfaces/IUTItemEntity";
 
 export class MarketListOptions {
-  entity: IUTItemEntity;
+  itemData: { id: number };
   startingBid: number;
   buyNow: number;
   duration: number;

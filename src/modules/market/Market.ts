@@ -107,7 +107,7 @@ export class Market {
     return new Promise((resolve, reject) => {
       window.services.Item.itemDao
         .listItem(
-          options.entity,
+          options.itemData,
           options.startingBid,
           options.buyNow,
           options.duration
