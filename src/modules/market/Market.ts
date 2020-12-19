@@ -39,51 +39,6 @@ export class Market {
   }
 
   /**
-   * Gets all entities present on transfer pile
-   * @returns a list of IUTItemEntity
-   */
-  async getTransferPile(): Promise<IUTItemEntity[]> {
-    return new Promise((resolve, reject) => {
-      window.services.Item.itemDao
-        .getTransferPile()
-        .observe(undefined, (_: any, obs: any) => {
-          if (obs.success) resolve(obs.response.items);
-          else reject();
-        });
-    });
-  }
-
-  /**
-   * Gets all entities present on watch pile
-   * @returns a list of IUTItemEntity
-   */
-  async getWatchPile(): Promise<IUTItemEntity[]> {
-    return new Promise((resolve, reject) => {
-      window.services.Item.itemDao
-        .getWatchPile()
-        .observe(undefined, (_: any, obs: any) => {
-          if (obs.success) resolve(obs.response.items);
-          else reject();
-        });
-    });
-  }
-
-  /**
-   * Gets all entities present on unassigned pile
-   * @returns a list of IUTItemEntity
-   */
-  async getUnassignedPile(): Promise<IUTItemEntity[]> {
-    return new Promise((resolve, reject) => {
-      window.services.Item.itemDao
-        .getUnassignedPile()
-        .observe(undefined, (_: any, obs: any) => {
-          if (obs.success) resolve(obs.response.items);
-          else reject();
-        });
-    });
-  }
-
-  /**
    * Relists all expired entities present in the transfer pile.
    * @returns a list of auctionIds.
    */
@@ -111,7 +66,7 @@ export class Market {
         options.buyNowPrice,
         options.duration
       ).observe(undefined, (_: any, obs: any) => {
-        if (obs.success) resolve(obs.data?.auctionIds);
+        if (obs.success) resolve(obs.data?.itemIds);
         else reject();
       });
     });

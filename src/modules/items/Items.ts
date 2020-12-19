@@ -33,4 +33,49 @@ export class Items {
       );
     });
   }
+
+  /**
+   * Gets all entities present on transfer pile
+   * @returns a list of IUTItemEntity
+   */
+  async getTransferPile(): Promise<IUTItemEntity[]> {
+    return new Promise((resolve, reject) => {
+      window.services.Item.itemDao
+        .getTransferPile()
+        .observe(undefined, (_: any, obs: any) => {
+          if (obs.success) resolve(obs.response.items);
+          else reject();
+        });
+    });
+  }
+
+  /**
+   * Gets all entities present on watch pile
+   * @returns a list of IUTItemEntity
+   */
+  async getWatchPile(): Promise<IUTItemEntity[]> {
+    return new Promise((resolve, reject) => {
+      window.services.Item.itemDao
+        .getWatchPile()
+        .observe(undefined, (_: any, obs: any) => {
+          if (obs.success) resolve(obs.response.items);
+          else reject();
+        });
+    });
+  }
+
+  /**
+   * Gets all entities present on unassigned pile
+   * @returns a list of IUTItemEntity
+   */
+  async getUnassignedPile(): Promise<IUTItemEntity[]> {
+    return new Promise((resolve, reject) => {
+      window.services.Item.itemDao
+        .getUnassignedPile()
+        .observe(undefined, (_: any, obs: any) => {
+          if (obs.success) resolve(obs.response.items);
+          else reject();
+        });
+    });
+  }
 }
