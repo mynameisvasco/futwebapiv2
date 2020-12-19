@@ -36,6 +36,8 @@ export class App {
     window.services.PIN.isEnabledByUser = () => false;
     window.services.PIN.isEnabledByConfig = () => false;
     window.services.PIN.enabled = false;
+    window.TelemetryManager.trackEvent = () => {};
+    window.TelemetryManager.trackPage = () => {};
   }
 
   /**

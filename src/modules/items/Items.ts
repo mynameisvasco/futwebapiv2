@@ -1,3 +1,4 @@
+import { FutItemPile } from "../../enums/FutItemPile";
 import { IUTItemEntity } from "../../interfaces/IUTItemEntity";
 
 export class Items {
@@ -13,6 +14,23 @@ export class Items {
           if (obs.success) resolve(obs.response.item);
           else reject();
         });
+    });
+  }
+
+  /**
+   * Moves a item from one pile to another.
+   * @param entity item to move
+   * @param pile destination pile
+   */
+  async move(entity: IUTItemEntity, pile: FutItemPile) {
+    return new Promise((resolve, reject) => {
+      window.services.Item.move(entity, pile).observe(
+        undefined,
+        (_: any, obs: any) => {
+          if (obs.success) resolve(undefined);
+          else reject();
+        }
+      );
     });
   }
 }

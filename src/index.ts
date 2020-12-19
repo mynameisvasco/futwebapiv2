@@ -1,3 +1,5 @@
+export * from "./enums/FutItemPile";
+
 export * from "./interfaces/IPriceRanges";
 export * from "./interfaces/IUTAuctionEntity";
 export * from "./interfaces/IUTItemEntity";
@@ -47,5 +49,6 @@ declare global {
     };
     EASFCApp: any;
     gConfigurationModel: any;
+    TelemetryManager: any;
   }
 }
