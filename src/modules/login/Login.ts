@@ -39,10 +39,14 @@ export class Login {
    * Selects security method to use
    * @param option email or app 2fa method.
    */
-  selectSecurity(option: "APP" | "EMAIL") {
+  selectSecurity(option: "APP" | "EMAIL" | "SMS" | "ANY") {
     const inputs = Array.from(document.getElementsByTagName("input"));
     const security = inputs.find((o: HTMLInputElement) => {
-      return o.value === option;
+      if (option !== "ANY") {
+        return o.value === option;
+      } else {
+        return o.value === "APP" || o.value === "EMAIL" || o.value === "SMS";
+      }
     });
     if (security) {
       security.click();
