@@ -50,5 +50,7 @@ declare global {
     EASFCApp: any;
     gConfigurationModel: any;
     TelemetryManager: any;
+    _appMain: any;
+    accessobjects: any;
   }
 }

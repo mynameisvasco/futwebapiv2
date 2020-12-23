@@ -52,4 +52,20 @@ export class User {
       );
     });
   }
+
+  /**
+   * Returns ability of user to use the transfer market.
+   * @returns true if user can use market, otherwise false
+   */
+  canUseMarket(): boolean {
+    return this.getUser().hasTradeAccess();
+  }
+
+  /**
+   * Returns if user gas club or not
+   * @returns true if user has a club, otherwise false
+   */
+  hasClub() {
+    return this.getUser().selectedPersona !== 0;
+  }
 }

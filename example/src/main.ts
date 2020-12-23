@@ -43,9 +43,16 @@ express.post("/login", async (req: Request, res: Response) => {
   await webApp.exec(() => window.api.login.selectSecurity("APP"));
   await webApp.waitForNavigation();
   await webApp.exec(
-    (token2fa) => window.api.login.security({ token2fa }),
+    (token2fa) => window.api.login.security({ code2fa: token2fa }),
     token2fa
   );
+  await webApp.waitForLoginFinish();
+  const canUseAccount = (await webApp.exec(() => {
+    const canUseMarket = window.api.user.canUseMarket();
+    const hasClub = window.api.user.hasClub();
+    return canUseMarket && hasClub;
+  })) as boolean;
+  console.log(canUseAccount);
 });
 
 const server = Https.createServer(options, express);

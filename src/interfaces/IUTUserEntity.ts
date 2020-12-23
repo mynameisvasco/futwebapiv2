@@ -13,4 +13,5 @@ export interface IUTUserEntity {
   tradeAccess: number;
   _personas: IUTPersonaEntity[];
   _unopenedPacks: number;
+  hasTradeAccess(): boolean;
 }
