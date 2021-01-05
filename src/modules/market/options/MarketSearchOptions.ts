@@ -21,7 +21,7 @@ export class MarketSearchOptions {
   _category: string = "any";
   _position: string = "any";
   _sort: string = "desc"; //Not figured out how it works
-  _type: "player" | "staff" | "clubItem" | "training" = "player";
+  type: "player" | "staff" | "clubItem" | "training" = "player";
   _untradeables: string = ""; //Not figured out how it works
   zone: number = -1; // Available options: {DEFENSE: 130, MIDFIELD: 131, ATTACKER: 132} (source: window.enums.PlayerZonesAsInts)
 }
