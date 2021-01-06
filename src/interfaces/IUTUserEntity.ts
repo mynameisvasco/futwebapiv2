@@ -11,7 +11,7 @@ export interface IUTUserEntity {
   points: { type: string; amount: number };
   selectedPersona: number;
   tradeAccess: number;
-  _personas: IUTPersonaEntity[];
-  _unopenedPacks: number;
+  personas: IUTPersonaEntity[];
+  unopenedPacks: number;
   hasTradeAccess(): boolean;
 }
