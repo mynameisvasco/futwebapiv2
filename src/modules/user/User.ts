@@ -17,7 +17,7 @@ export class User {
         undefined,
         (_: any, obs: any) => {
           if (obs.success) resolve(obs.data.coins.amount);
-          else reject();
+          else reject(obs.status);
         }
       );
     });
@@ -32,7 +32,7 @@ export class User {
         undefined,
         (_: any, obs: any) => {
           if (obs.success) resolve(obs.data.points.amount);
-          else reject();
+          else reject(obs.status);
         }
       );
     });
@@ -47,7 +47,7 @@ export class User {
         undefined,
         (_: any, obs: any) => {
           if (obs.success) resolve(obs.data.tokens.amount);
-          else reject();
+          else reject(obs.status);
         }
       );
     });
