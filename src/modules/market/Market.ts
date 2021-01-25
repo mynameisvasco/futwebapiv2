@@ -32,7 +32,7 @@ export class Market {
         undefined,
         (_: any, obs: any) => {
           if (obs.success) resolve(obs.data.items);
-          else reject();
+          else reject(obs.status);
         }
       );
     });
@@ -48,7 +48,7 @@ export class Market {
         .relistExpiredAuctions()
         .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.data?.auctionIds);
-          else reject();
+          else reject(obs.status);
         });
     });
   }
@@ -67,7 +67,7 @@ export class Market {
         options.duration
       ).observe(undefined, (_: any, obs: any) => {
         if (obs.success) resolve(obs.data?.itemIds);
-        else reject();
+        else reject(obs.status);
       });
     });
   }
@@ -84,7 +84,7 @@ export class Market {
         undefined,
         (_: any, obs: any) => {
           if (obs.success) resolve(obs.data?.itemIds);
-          else reject();
+          else reject(obs.status);
         }
       );
     });
@@ -100,7 +100,7 @@ export class Market {
         undefined,
         (_: any, obs: any) => {
           if (obs.success) resolve(obs.data?.itemIds);
-          else reject();
+          else reject(obs.status);
         }
       );
     });
@@ -125,7 +125,7 @@ export class Market {
                 } as IPriceRanges;
               })
             );
-          else reject();
+          else reject(obs.status);
         });
     });
   }
