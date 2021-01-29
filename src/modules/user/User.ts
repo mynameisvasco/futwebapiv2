@@ -54,6 +54,17 @@ export class User {
   }
 
   /**
+   * Gets user's platform
+   */
+  getPlatform(): "xbox" | "pc" | "ps4" | "switch" {
+    const persona = window.services.User.getUser().getSelectedPersona();
+    if (persona.isPC) return "pc";
+    else if (persona.isPlaystation) return "ps4";
+    else if (persona.isXbox) return "xbox";
+    return "switch";
+  }
+
+  /**
    * Returns ability of user to use the transfer market.
    * @returns true if user can use market, otherwise false
    */
