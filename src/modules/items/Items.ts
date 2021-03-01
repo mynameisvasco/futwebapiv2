@@ -12,7 +12,7 @@ export class Items {
         .getItemDataByDefId([resourceId])
         .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.response.item);
-          else reject(obs.error.status);
+          else reject(obs.error.code);
         });
     });
   }
@@ -28,7 +28,7 @@ export class Items {
         undefined,
         (_: any, obs: any) => {
           if (obs.success) resolve(undefined);
-          else reject(obs.error.status);
+          else reject(obs.error.code);
         }
       );
     });
@@ -44,7 +44,7 @@ export class Items {
         .getTransferPile()
         .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.response.items);
-          else reject(obs.error.status);
+          else reject(obs.error.code);
         });
     });
   }
@@ -59,7 +59,7 @@ export class Items {
         .getWatchPile()
         .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.response.items);
-          else reject(obs.error.status);
+          else reject(obs.error.code);
         });
     });
   }
@@ -74,7 +74,7 @@ export class Items {
         .getUnassignedPile()
         .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.response.items);
-          else reject(obs.error.status);
+          else reject(obs.error.code);
         });
     });
   }
