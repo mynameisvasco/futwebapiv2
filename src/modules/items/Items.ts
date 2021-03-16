@@ -1,5 +1,6 @@
 import { FutItemPile } from "../../enums/FutItemPile";
 import { IUTItemEntity } from "../../interfaces/IUTItemEntity";
+import { MarketSearchOptions } from "../market/options/MarketSearchOptions";
 
 export class Items {
   /**
@@ -76,6 +77,21 @@ export class Items {
           if (obs.success) resolve(obs.response.items);
           else reject(obs.error.code);
         });
+    });
+  }
+
+  /**
+   * Gets all items present in club
+   */
+  async getClubItems(options: MarketSearchOptions): Promise<IUTItemEntity[]> {
+    return new Promise((resolve, reject) => {
+      window.accessobjects.Club.getClubItems(options).observe(
+        undefined,
+        (_: any, obs: any) => {
+          if (obs.success) resolve(obs.response.items);
+          else reject(obs.error.code);
+        }
+      );
     });
   }
 }
