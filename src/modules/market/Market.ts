@@ -28,13 +28,12 @@ export class Market {
     options: MarketSearchOptions
   ): Promise<IUTItemEntity[]> {
     return new Promise((resolve, reject) => {
-      window.services.Item.searchTransferMarket(options, 1).observe(
-        undefined,
-        (_: any, obs: any) => {
+      window.services.Item.itemDao
+        .searchTransferMarket(options, 1)
+        .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.data.items);
           else reject(obs.error.code);
-        }
-      );
+        });
     });
   }
 
