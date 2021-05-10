@@ -23,5 +23,29 @@ export class MarketSearchOptions {
   _sort: string = "desc"; //Not figured out how it works
   _type: "player" | "staff" | "clubItem" | "training" = "player";
   _untradeables: string = ""; //Not figured out how it works
-  zone: number = -1; // Available options: {DEFENSE: 130, MIDFIELD: 131, ATTACKER: 132} (source: window.enums.PlayerZonesAsInts)
+  _zone: number = -1; // Available options: {DEFENSE: 130, MIDFIELD: 131, ATTACKER: 132} (source: window.enums.PlayerZonesAsInts)
+
+  get category() {
+    return this._category;
+  }
+
+  get position() {
+    return this._position;
+  }
+
+  get sort() {
+    return this._sort;
+  }
+
+  get type() {
+    return this._type;
+  }
+
+  get untradeables() {
+    return this._untradeables;
+  }
+
+  get zone() {
+    return this._zone;
+  }
 }
