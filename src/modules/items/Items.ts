@@ -1,6 +1,6 @@
 import { FutItemPile } from "../../enums/FutItemPile";
 import { IUTItemEntity } from "../../interfaces/IUTItemEntity";
-import { MarketSearchOptions } from "../market/options/MarketSearchOptions";
+import { IUTSearchCriteriaDTO } from "../../interfaces/IUTSearchCriteriaDTO";
 
 export class Items {
   /**
@@ -83,7 +83,7 @@ export class Items {
   /**
    * Gets all items present in club
    */
-  async getClubItems(options: MarketSearchOptions): Promise<IUTItemEntity[]> {
+  async getClubItems(options: IUTSearchCriteriaDTO): Promise<IUTItemEntity[]> {
     return new Promise((resolve, reject) => {
       window.accessobjects.Club.getClubItems(options).observe(
         undefined,

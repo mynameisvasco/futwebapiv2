@@ -1,7 +1,7 @@
 import { IPriceRanges } from "../../interfaces/IPriceRanges";
 import { IUTItemEntity } from "../../interfaces/IUTItemEntity";
+import { IUTSearchCriteriaDTO } from "../../interfaces/IUTSearchCriteriaDTO";
 import { MarketListOptions } from "./options/MarketListOptions";
-import { MarketSearchOptions } from "./options/MarketSearchOptions";
 
 export class Market {
   /**
@@ -21,11 +21,11 @@ export class Market {
 
   /**
    * Performs a market search using specified options
-   * @param options market search options
+   * @param options search options
    * @returns a list of IUTItemEntity
    */
   async searchTransferMarket(
-    options: MarketSearchOptions
+    options: IUTSearchCriteriaDTO
   ): Promise<IUTItemEntity[]> {
     return new Promise((resolve, reject) => {
       window.services.Item.itemDao
