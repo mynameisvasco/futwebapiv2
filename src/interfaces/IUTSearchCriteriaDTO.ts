@@ -29,8 +29,12 @@ export interface IUTSearchCriteriaDTO {
   className(): string;
   position(): string;
   sort(): string;
-  superclass(): string;
   type(): string;
   untradeables(): string;
   zone(): number;
+  hasValidDefId(): boolean;
+  isModified(): boolean;
+  reset(): void;
+  resetDefId(): void;
+  update(): void;
 }
