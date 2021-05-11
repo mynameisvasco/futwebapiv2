@@ -18,10 +18,34 @@ export class MarketSearchOptions {
   sortBy: string = "value"; //Not figured out how it works
   subtypes: any[] = []; //Not figured out how it works
   acquiredDate: string = ""; //Not figured out how it works
-  category: string = "any";
-  position: string = "any";
-  sort: string = "desc"; //Not figured out how it works
-  type: "player" | "staff" | "clubItem" | "training" = "player";
-  untradeables: string = ""; //Not figured out how it works
-  zone: number = -1; // Available options: {DEFENSE: 130, MIDFIELD: 131, ATTACKER: 132} (source: window.enums.PlayerZonesAsInts)
+  _category: string = "any";
+  _position: string = "any";
+  _sort: string = "desc"; //Not figured out how it works
+  _type: "player" | "staff" | "clubItem" | "training" = "player";
+  _untradeables: string = ""; //Not figured out how it works
+  _zone: number = -1; // Available options: {DEFENSE: 130, MIDFIELD: 131, ATTACKER: 132} (source: window.enums.PlayerZonesAsInts)
+
+  category() {
+    return this._category;
+  }
+
+  position() {
+    return this._position;
+  }
+
+  sort() {
+    return this._sort;
+  }
+
+  type() {
+    return this._type;
+  }
+
+  untradeables() {
+    return this._untradeables;
+  }
+
+  zone() {
+    return this._zone;
+  }
 }
