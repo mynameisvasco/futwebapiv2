@@ -1,7 +1,7 @@
 import { IPriceRanges } from "../../interfaces/IPriceRanges";
 import { IUTItemEntity } from "../../interfaces/IUTItemEntity";
 import { IUTSearchCriteriaDTO } from "../../interfaces/IUTSearchCriteriaDTO";
-import { MarketListOptions } from "./options/MarketListOptions";
+import { IUTListItemDTO } from "../../interfaces/IUTListItemDTO";
 
 export class Market {
   /**
@@ -54,10 +54,10 @@ export class Market {
 
   /**
    * Lists an entity in the market using specified options
-   * @param options list market options
+   * @param options list item options
    * @returns a list of auctionIds
    */
-  async list(options: MarketListOptions): Promise<number[]> {
+  async list(options: IUTListItemDTO): Promise<number[]> {
     return new Promise((resolve, reject) => {
       window.services.Item.list(
         options.entity,

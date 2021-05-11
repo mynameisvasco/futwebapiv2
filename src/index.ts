@@ -7,6 +7,7 @@ export * from "./interfaces/IUTStaticPlayerItemDataDTO";
 export * from "./interfaces/IUTUserEntity";
 export * from "./interfaces/IUTPersonaEntity";
 export * from "./interfaces/IUTSearchCriteriaDTO";
+export * from "./interfaces/IUTListItemDTO";
 
 export * from "./modules/App";
 export * from "./modules/items/Items";
@@ -16,7 +17,6 @@ export * from "./modules/login/options/LoginOptions";
 export * from "./modules/login/options/SecurityOptions";
 
 export * from "./modules/market/Market";
-export * from "./modules/market/options/MarketListOptions";
 
 export * from "./modules/user/User";
 
