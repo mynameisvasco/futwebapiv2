@@ -31,7 +31,7 @@ export class Market {
       window.services.Item.itemDao
         .searchTransferMarket(options, 1)
         .observe(undefined, (_: any, obs: any) => {
-          if (obs.success) resolve(obs.data.items);
+          if (obs.success) resolve(obs.response.items);
           else reject(obs.error.code);
         });
     });
