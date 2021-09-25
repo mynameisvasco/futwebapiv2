@@ -67,7 +67,7 @@ export class Market {
           options.duration
         )
         .observe(undefined, (_: any, obs: any) => {
-          if (obs.success) resolve(obs.data?.itemIds);
+          if (obs.success) resolve(obs.response.auctionIds);
           else reject(obs.error.code);
         });
     });
@@ -84,7 +84,7 @@ export class Market {
       window.services.Item.itemDao
         .bid(entity, coins)
         .observe(undefined, (_: any, obs: any) => {
-          if (obs.success) resolve(obs.data?.itemIds);
+          if (obs.success) resolve(obs.response?.items);
           else reject(obs.error.code);
         });
     });
@@ -96,12 +96,13 @@ export class Market {
    */
   async clearSold(): Promise<void> {
     return new Promise((resolve, reject) => {
-      window.services.Item.itemDao
-        .removeSold()
-        .observe(undefined, (_: any, obs: any) => {
-          if (obs.success) resolve(obs.data?.itemIds);
+      window.services.Item.clearSoldItems().observe(
+        undefined,
+        (_: any, obs: any) => {
+          if (obs.success) resolve(obs.response?.items);
           else reject(obs.error.code);
-        });
+        }
+      );
     });
   }
 
