@@ -59,15 +59,17 @@ export class Market {
    */
   async list(options: IUTListItemDTO): Promise<number[]> {
     return new Promise((resolve, reject) => {
-      window.services.Item.list(
-        options.entity,
-        options.startingBid,
-        options.buyNowPrice,
-        options.duration
-      ).observe(undefined, (_: any, obs: any) => {
-        if (obs.success) resolve(obs.data?.itemIds);
-        else reject(obs.error.code);
-      });
+      window.services.Item.itemDao
+        .listItem(
+          options.entity.id,
+          options.startingBid,
+          options.buyNowPrice,
+          options.duration
+        )
+        .observe(undefined, (_: any, obs: any) => {
+          if (obs.success) resolve(obs.data?.itemIds);
+          else reject(obs.error.code);
+        });
     });
   }
 
@@ -79,13 +81,12 @@ export class Market {
    */
   async bid(entity: IUTItemEntity, coins: number): Promise<number[]> {
     return new Promise((resolve, reject) => {
-      window.services.Item.bid(entity, coins).observe(
-        undefined,
-        (_: any, obs: any) => {
+      window.services.Item.itemDao
+        .bid(entity, coins)
+        .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.data?.itemIds);
           else reject(obs.error.code);
-        }
-      );
+        });
     });
   }
 
@@ -95,13 +96,12 @@ export class Market {
    */
   async clearSold(): Promise<void> {
     return new Promise((resolve, reject) => {
-      window.services.Item.clearSoldItems().observe(
-        undefined,
-        (_: any, obs: any) => {
+      window.services.Item.itemDao
+        .removeSold()
+        .observe(undefined, (_: any, obs: any) => {
           if (obs.success) resolve(obs.data?.itemIds);
           else reject(obs.error.code);
-        }
-      );
+        });
     });
   }
 
