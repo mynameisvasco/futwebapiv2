@@ -4,7 +4,7 @@
 
 ## 🎉 What changed?
 
-The old version of this api was based on web automation using selenium, that approach is very limited and instable. This new version uses javascript injection so that we can use web app javascript code without need to reivent the whell. 
+The old version of this api was based on web automation using selenium, that approach is very limited and unstable. This new version uses javascript injection so that we can use web app javascript code without need to reivent the whell. 
 
 
 
