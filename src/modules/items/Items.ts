@@ -25,12 +25,13 @@ export class Items {
    */
   async move(entity: IUTItemEntity, pile: FutItemPile) {
     return new Promise((resolve, reject) => {
-      window.services.Item.itemDao
-        .move(entity, pile, false)
-        .observe(undefined, (_: any, obs: any) => {
+      window.services.Item.move(entity, pile).observe(
+        undefined,
+        (_: any, obs: any) => {
           if (obs.success) resolve(undefined);
           else reject(obs.error.code);
-        });
+        }
+      );
     });
   }
 
