@@ -32,7 +32,7 @@ export class Login {
       options.email;
     (document.getElementById("password") as HTMLInputElement).value =
       options.password;
-    document.getElementById("btnLogin").click();
+    document.getElementById("logInBtn").click();
   }
 
   /**
@@ -60,11 +60,11 @@ export class Login {
    */
   security(options: SecurityOptions) {
     if (options.code2fa) {
-      (document.getElementById("oneTimeCode") as HTMLInputElement).value =
+      (document.getElementById("twoFactorCode") as HTMLInputElement).value =
         options.code2fa;
     } else {
       (document.getElementById(
-        "oneTimeCode"
+        "twoFactorCode"
       ) as HTMLInputElement).value = authenticator.generate(options.token2fa);
     }
     document.getElementById("btnSubmit").click();
